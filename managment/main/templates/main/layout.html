@@ -19,7 +19,7 @@
     <span class="logo">worksetter</span>
     <dev class="less" style="visibility: hidden"><i class="fa-solid fa-bars"></i></dev>
     <ul>
-        <a href="{% url 'home' %}"><li><i class="fas fa-home fa-lg"></i> Главная</li></a>
+        <a href="{% url 'index' %}"><li><i class="fas fa-home fa-lg"></i> Главная</li></a>
         <a href="{% url 'about' %}"><li><i class="fa-solid fa-check fa-lg"></i> Задачи</li></a>
         <a href=""><li><i class="fa-solid fa-bell fa-lg"></i> Упоминания</li></a>
         <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-gear fa-lg"></i> Настройки</li></a>
@@ -32,12 +32,12 @@
         {% endblock %}
         <ul>
             <li class="userInfo">
-                <p style="margin-top: 9px">username</p>
+                <p style="margin-top: 9px">{{ user.username|default:'Guest' }}</p>
                 <div class="userIcon"><i class="fa-solid fa-user fa-2x"></i></div>
                 <div class="triangle"><i class="fa-solid fa-caret-left fa-lg"></i></i></div>
                 <ul class = "userMenu">
                     <li><a href = "#">Профиль</a></li>
-                    <li><a href = "#">Выход<i class="fa-solid fa-right-from-bracket" style="margin: 0 6px 0 6px;"></i></a></li>
+                    <li><a href = "{% url 'logout' %}">Выход<i class="fa-solid fa-right-from-bracket" style="margin: 0 6px 0 6px;"></i></a></li>
                 </ul>
             </li>
         </ul>
