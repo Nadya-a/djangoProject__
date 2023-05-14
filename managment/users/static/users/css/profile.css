@@ -1,0 +1,88 @@
+.body{
+    padding-top: 4rem;
+    background: #212121;
+    color: white;
+    height: 100vh;
+}
+.header{
+    padding: 10px 10px 10px 10px;
+    width: 100%;
+    border-bottom: 1px solid #4d4d4d;
+    color: white;
+    background: #2c2c2c;
+    height: 4rem;
+    position: fixed;
+   /* display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: flex-end; */
+    display: flex;
+
+    font-family: "Verdana";
+}
+.header_info{
+    width: 100%;
+    height: 50%;
+    font-size: 22px;
+    margin-top: 6px;
+}
+.userInfo{
+    font-size: 16px;
+    margin-left: auto;
+    margin-right: 0;
+    display: -webkit-box;
+}
+.userIcon{
+    margin-left: 4px;
+    padding: 6px 10px 6px 10px;
+    border: 1px solid #4d4d4d;
+    border-radius: 26px;
+}
+.triangle{
+    padding: 10px 0 0 8px;
+}
+.userMenu{
+    display: none;
+	top: 100%;
+    position: absolute;
+}
+.userInfo:hover .userMenu{
+	display: block;
+}
+.userInfo:hover .triangle i{
+    transform: rotate(-90deg);
+    transition: 0.20s;
+}
+.userMenu li{
+    display: block;
+    text-align: center;
+	text-decoration: none;
+	position: relative;
+    float: left;
+    margin: 0;
+
+    border: 1px solid #4d4d4d;
+    border-radius: 4px;
+    height: 30px;
+    background: #2c2c2c;
+    width: 126px;
+}
+.userMenu li a{
+    color: white;
+    text-decoration: none;
+}
+.userProfile{
+
+}
+.features{
+    float: left;
+    color: #fff;
+    margin-top: 100px;
+    text-align: center;
+}
+.container .row .col{
+    background: #4d4d4d;
+    border: 1px solid #ffffff;
+}

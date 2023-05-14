@@ -8,14 +8,19 @@ aside{
     float: left;
     position: fixed;
     background: #2c2c2c;
-    width: 20%;
-    padding: 2%;
+    width: 18%;
+    padding: 1%;
     height: 100vh;
     color: #fff;
     border-right: 1px solid #4d4d4d;
     font-family: "Verdana";
 }
-
+.logo_im{
+    width: 50px;
+    height: 50px;
+    color: #cd5c5c;
+    margin-bottom: 25px
+}
 
 aside .logo{
     font-family: "Tilt Warp";
@@ -43,12 +48,12 @@ aside ul li:hover, aside ul a:hover{
     transform: scale(1.05);
 }
 .rightSideWrapper{
-    margin-left: 20%;
+    margin-left: 18%;
 }
 
 .head{
     padding: 10px 10px 10px 10px;
-    width: 80%;
+    width: 82%;
     border-bottom: 1px solid #4d4d4d;
     color: white;
     position: fixed;
@@ -136,19 +141,12 @@ div.hh a {
     margin-top: 6px;
 }
 .main{
-    margin-left: 20%;
 }
 .main .features{
     float: left;
     color: #fff;
     margin-top: 100px;
     text-align: center;
-    width: 75%;
-}
-.main .features h1{font-size: 50px;}
-.main .features p{
-    max-width: 400px;
-    margin: 20px auto;
 }
 
 .alert-warning {
@@ -163,4 +161,38 @@ form {
     margin-left: 32%;
     width: 500px;
     margin-top: 50px;
+}
+.hello_text{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.workspace{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    margin: 2rem;
+}
+.user_tasks{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background: #2c2c2c;
+    border: 1px solid #4d4d4d;
+    border-radius: 30px;
+    height: 500px;
+    width: 600px;
+    margin-right: 20px;
+}
+.user_projects{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    background: #2c2c2c;
+    border: 1px solid #4d4d4d;
+    border-radius: 30px;
+    height: 500px;
+    width: 600px;
 }

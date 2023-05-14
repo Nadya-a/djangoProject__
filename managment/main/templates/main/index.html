@@ -12,9 +12,22 @@
 {% block body%}
   <!--  <li>aaaa</li><li>bbbb</li> -->
 <div class="features">
-    <h1>{{ title }}</h1>
-    <p>Alkf fkdlfjkdf dfkjfdkdlsl fojdksfd fjdkkdl jfkdfjr fieor  grertre fredf ertgvc ertgfd erfd ertvc w qsd tyyf rtytd  rt  reert res</p>
-    <button class="btn btn-warning">On page about</button>
+    <div class="hello_text">
+        <a style="font-weight: 500; font-size: xx-large">{{ title }}, {{user.username}}!</a>
+        <a style="font-weight: 300; font-size: large">{{ week_day }}, {{ current_date }}</a>
+    </div>
+
+    <div class="workspace">
+        <div class="user_tasks">
+
+        </div>
+        <div class="user_projects">
+
+        </div>
+    </div>
+
+
+
 
     {% for el in values %}
        {% if el == 'Second' %}

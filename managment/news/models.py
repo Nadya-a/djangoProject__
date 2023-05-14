@@ -18,4 +18,3 @@ class Articles(models.Model):
         verbose_name_plural = 'Новости'
 
 
-# class User (models.Model):
