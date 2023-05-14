@@ -1,0 +1,59 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/users.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css"/>
+    <link rel="icon" type="image/png" href="{% static 'main/img/people.png' %}"/>
+    <title>{% block title %}Taskify{% endblock %}</title>
+</head>
+<header>
+    <div class="header_logo">
+        <img src="{% static 'main/img/people.png' %}" class="logo_im">
+        <span class="logo">Taskify</span>
+    </div>
+    <div class="info">
+        <a>Выполняйте совместную работу быстрее вместе с нами.</a>
+    </div>
+    <div class="user_buttons">
+        {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" class="btn btn-outline-secondary btn-lg" style="margin-right: 10px">Выйти</a>
+            <a href="{% url 'user' %}" class="btn btn-dark btn-lg">К задачам</a>
+
+            {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-outline-secondary btn-lg" style="margin-right: 10px">Регистрация</a>
+            <a href="{% url 'login' %}" class="btn btn-dark btn-lg">Вход</a>
+        {% endif %}
+    </div>
+</header>
+<body>
+<div class="info_container">
+    <div class="worksetter_info"></div>
+    <div class="user_info">
+        <h1>Привет, {{ user.username|default:'Guest' }}!</h1>
+        <p style="font-weight: 620; font-size: larger">Начни свой путь к успеху вместе с нами - присоединяйся к Taskify прямо сейчас!</p>
+        <hr id="hhr">
+        <div class="buttons">
+            {% if user.is_authenticated %}
+            <a href="{% url 'user' %}" class="btn btn-warning btn-lg" style="margin-right: 10px; width: 260px; height: 60px; font-size: x-large; font-weight: 620">Перейти в профиль</a>
+
+            {% else %}
+            <a href="{% url 'signup' %}" class="btn btn-dark btn-lg" style="margin-right: 10px; width: 140px; height: 60px; font-size: x-large; font-weight: 620">Начать</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+<div class="other_info">
+    <div class="info_text">
+            <h1>Почему именно Taskify?</h1>
+            <p style="font-weight: 620; font-size: larger">Приветствуем тебя на Taskify - платформе, которая поможет тебе достичь успеха в любой сфере! У нас ты найдешь множество полезных инструментов и ресурсов, которые помогут тебе стать продуктивнее, организованнее и успешнее. Начни свой путь к успеху вместе с нами - присоединяйся к Taskify прямо сейчас!</p>
+    </div>
+</div>
+</body>
+</html>
+

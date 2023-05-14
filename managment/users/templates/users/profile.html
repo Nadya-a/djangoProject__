@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'users/css/profile.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <title>Профиль</title>
+</head>
+
+<body>
+<header class="header">
+    <p class="header_info">Редактирование профиля</p>
+    <ul>
+        <li class="userInfo">
+            <p style="margin-top: 9px">{{ user.username|default:'Guest' }}</p>
+            <div class="userIcon"><i class="fa-solid fa-user fa-2x"></i></div>
+            <div class="triangle"><i class="fa-solid fa-caret-left fa-lg"></i></i></div>
+            <ul class = "userMenu">
+                <li><a href = "{% url 'profile' user.id %}">Профиль</a></li>
+                <li><a href = "{% url 'logout' %}">Выход<i class="fa-solid fa-right-from-bracket" style="margin: 0 6px 0 6px;"></i></a></li>
+            </ul>
+        </li>
+    </ul>
+</header>
+<div class="body">
+    <div class="userProfile">
+        <a>ffffffffff</a>
+        <button class="btn btn btn-dark btn-lg"></button>
+    </div>
+    <div class="user_image">
+        <!-- {% static 'users/user_images/barbir.jpeg' %} -->
+        <img src= "{{ user.profile.photo }}" style="width: 180px; height: 240px">
+        <p>{{ user.profile.photo }}
+        "{% static 'users/user_images/barbir.jpeg' %}"</p>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                {{ user.first_name }}
+            </div>
+            <div class="col">
+                {{ user.last_name }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{ user.profile.bio }}
+            </div>
+            <div class="col">
+                {{ user.profile.department }}
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
