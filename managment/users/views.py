@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, FormView
-from .models import User, Profile
+from .models import User, Profile, Task, Project, Team
 from .forms import UserForm, ProfileForm
 
 
@@ -28,16 +28,28 @@ def user(request):
         greetings = "Добрый день"
     else:
         greetings = "Добрый вечер"
+
+    tasks = Task.objects.order_by('id')
+    projects = Project.objects.order_by('id')
+    teams=Team.objects.order_by('id')
+
     data = {
         'title': greetings,
         'current_date': current_date,
-        'week_day': days[week_day]
+        'week_day': days[week_day],
+        'tasks': tasks,
+        'projects': projects,
+        'teams': teams
     }
+
     return render(request, 'main/index.html', data)
+
+
 
 
 def profile(request):
     return render(request, 'users/profile.html')
+
 
 class UserDetailView(DetailView):
     model = User

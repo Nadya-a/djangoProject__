@@ -12,8 +12,8 @@
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css"/>
     <link rel="icon" type="image/png" href="{% static 'main/img/people.png' %}"/>
-  </head>
-    <title>{% block title %}{% endblock %}</title>
+</head>
+<title>{% block title %}{% endblock %}</title>
 </head>
 <aside>
     <!--<i class="fa-solid fa-people-group fa-2x" style="color: indianred;"></i>-->
@@ -25,8 +25,18 @@
         <a href="{% url 'about' %}"><li><i class="fa-solid fa-check fa-lg"></i> Задачи</li></a>
         <a href=""><li><i class="fa-solid fa-bell fa-lg"></i> Упоминания</li></a>
         <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-gear fa-lg"></i> Настройки</li></a>
-       <!-- <p href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></p> -->
+        <!-- <p href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></p> -->
     </ul>
+    <div class="team">
+        {% for el in teams %}
+        <h>{{el.short_name}}</h>
+        {% endfor %}
+    </div>
+    <div class="projects">
+        {% for el in projects %}
+        <h>{{el.name}}</h>
+        {% endfor %}
+    </div>
 </aside>
 <div class="rightSideWrapper">
     <header class="head">

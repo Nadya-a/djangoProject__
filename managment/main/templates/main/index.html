@@ -10,7 +10,7 @@
 
 
 {% block body%}
-  <!--  <li>aaaa</li><li>bbbb</li> -->
+<!--  <li>aaaa</li><li>bbbb</li> -->
 <div class="features">
     <div class="hello_text">
         <a style="font-weight: 500; font-size: xx-large">{{ title }}, {{user.username}}!</a>
@@ -19,10 +19,24 @@
 
     <div class="workspace">
         <div class="user_tasks">
-
+            <div class="tasks_header">
+                <h2>Мои задачи</h2>
+            </div>
+            {% for el in tasks %}
+            <div class="task_element">
+                <h>{{el.name}}</h>
+            </div>
+            {% endfor %}
         </div>
         <div class="user_projects">
-
+            <div class="projects_header">
+                <h2>Мои проекты</h2>
+            </div>
+            {% for el in projects %}
+            <div class="project_element">
+                <h3>{{el.name}}</h3>
+            </div>
+            {% endfor %}
         </div>
     </div>
 
@@ -30,16 +44,16 @@
 
 
     {% for el in values %}
-       {% if el == 'Second' %}
-          {% filter upper %}
-             <p>{{ el }}</p>
-          {% endfilter %}
-          <!-- или просто {{ el|upper}} -->
-       {% endif %}
+    {% if el == 'Second' %}
+    {% filter upper %}
+    <p>{{ el }}</p>
+    {% endfilter %}
+    <!-- или просто {{ el|upper}} -->
+    {% endif %}
     {% endfor %}
 
     {% for el in obj %}
-          <p>{{ el }}</p>
+    <p>{{ el }}</p>
     {% endfor %}
 </div>
 

@@ -26,31 +26,64 @@
     </ul>
 </header>
 <div class="body">
+    <a href="{% url 'user' %}">Home</a>
     <div class="userProfile">
-        <a>ffffffffff</a>
-        <button class="btn btn btn-dark btn-lg"></button>
-    </div>
-    <div class="user_image">
-        <!-- {% static 'users/user_images/barbir.jpeg' %} -->
-        <img src= "{{ user.profile.photo }}" style="width: 180px; height: 240px">
-        <p>{{ user.profile.photo }}
-        "{% static 'users/user_images/barbir.jpeg' %}"</p>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {{ user.first_name }}
-            </div>
-            <div class="col">
-                {{ user.last_name }}
-            </div>
+        <div class="user_image">
+            <!-- {% static 'users/user_images/barbir.jpeg' %}
+            ../../../users/static/users/user_images/barbir.jpeg -->
+            <img src= "{% static 'users/user_images/barbir.jpeg' %}" style="width: 360px; height: 460px">
         </div>
-        <div class="row">
-            <div class="col">
-                {{ user.profile.bio }}
+        <div class="info_container">
+            <div class="row">
+                <div class="col-4">
+                    <h>Имя:</h>
+                </div>
             </div>
-            <div class="col">
-                {{ user.profile.department }}
+            <div class="row">
+                <div class="col col-lg-8">
+                    {{ user.last_name }} {{ user.first_name }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h>Возраст:</h>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-8">
+                    {{ user.profile.age }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h>Должность:</h>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col col-lg-8">
+                    {{ user.profile.job_title }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <h>Отдел:</h>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-8">
+                    {{ user.profile.department }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 title">
+                    <h>О себе:</h>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-8">
+                    {{ user.profile.bio }}
+                </div>
             </div>
         </div>
     </div>

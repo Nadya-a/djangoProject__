@@ -177,7 +177,6 @@ form {
 }
 .user_tasks{
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     background: #2c2c2c;
     border: 1px solid #4d4d4d;
@@ -185,6 +184,13 @@ form {
     height: 500px;
     width: 600px;
     margin-right: 20px;
+}
+.task_element{
+    display: flex;
+    justify-content: start;
+    border: 1px solid #4d4d4d;
+    height: 3rem;
+    font-size: medium;
 }
 .user_projects{
     display: flex;
