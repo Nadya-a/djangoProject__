@@ -19,24 +19,51 @@
 
     <div class="workspace">
         <div class="user_tasks">
-            <div class="tasks_header">
-                <h2>Мои задачи</h2>
+            <div class="workspace_header">
+                <div class="tasks_header_text">
+                    <i class="fa-solid fa-list-check fa-2xl"></i>
+                    <h2 style="margin-left: 4px; margin-top: 4px">Мои задачи</h2>
+                </div>
+              <!--  <ul class="hr">
+                    <li>Актуальные</li>
+                    <li>Просроченные</li>
+                    <li>Закрытые</li>
+                </ul> -->
             </div>
-            {% for el in tasks %}
-            <div class="task_element">
-                <h>{{el.name}}</h>
+            <div class="tasks_container">
+                {% for el in tasks %}
+                <div class="task_element">
+                    <span style="color: #808080"><i class="fa-regular fa-circle-check fa-2xl"></i></span>
+                    <h class="task_name">{{el.name}}</h>
+                    {% if el.deadline.date == current_date %}
+                    <h style="color: #65ab5b" class="task_deadline">Сегодня</h>
+                    {% elif el.deadline.date == tomorrow %}
+                    <h style="color: #65ab5b" class="task_deadline">Завтра</h>
+                    {% elif el.deadline.date == yesterday %}
+                    <h style="color: indianred" class="task_deadline">Вчера</h>
+                    {% elif el.deadline.date < yesterday %}
+                    <h style="color: indianred" class="task_deadline">{{el.deadline.date}}</h>
+                    {% else %}
+                    <h class="task_deadline">{{el.deadline.date}}</h>
+                    {% endif %}
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
         <div class="user_projects">
-            <div class="projects_header">
+            <div class="workspace_header">
                 <h2>Мои проекты</h2>
             </div>
-            {% for el in projects %}
-            <div class="project_element">
-                <h3>{{el.name}}</h3>
+            <div class="projects_container">
+                {% for el in projects %}
+                <div class="project_element">
+                    <div class="progress_bar_container">
+                        <i class="fa-solid fa-bars-progress fa-2x"></i>
+                    </div>
+                    <h>{{el.name}}</h>
+                </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
     </div>
 

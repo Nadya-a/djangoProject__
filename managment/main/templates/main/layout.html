@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.4.0/css/all.css"/>
     <link rel="icon" type="image/png" href="{% static 'main/img/people.png' %}"/>
-</head>
-<title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
 </head>
 <aside>
     <!--<i class="fa-solid fa-people-group fa-2x" style="color: indianred;"></i>-->
@@ -28,14 +27,28 @@
         <!-- <p href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></p> -->
     </ul>
     <div class="team">
-        {% for el in teams %}
-        <h>{{el.short_name}}</h>
-        {% endfor %}
+        <div class="aside_container">
+            <span style="color:#67E300"><i class="fa-solid fa-layer-group fa-xl"></i></span>
+            <h>Команды</h>
+            <div class="team_triangle"><i class="fa-solid fa-caret-left fa-lg"></i></i></div>
+        </div>
+        <ul class="ull">
+            {% for el in teams %}
+            <li>{{el.short_name}}</li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="projects">
-        {% for el in projects %}
-        <h>{{el.name}}</h>
-        {% endfor %}
+        <div class="aside_container">
+            <span style="color: #01939A"><i class="fa-solid fa-bars-progress fa-xl"></i></span>
+            <h>Проекты</h>
+            <div class="team_triangle"><i class="fa-solid fa-caret-left fa-lg"></i></i></div>
+        </div>
+        <ul class="ulli">
+            {% for el in projects %}
+            <li>{{el.name}}</li>
+            {% endfor %}
+        </ul>
     </div>
 </aside>
 <div class="rightSideWrapper">

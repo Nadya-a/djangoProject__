@@ -1,4 +1,4 @@
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render
@@ -19,6 +19,8 @@ def about(request):
 def user(request):
     hour_now = datetime.now().hour
     current_date = date.today()
+    tomorrow = current_date + timedelta(1)
+    yesterday = current_date - timedelta(1)
     week_day = date.today().weekday()
     days = ["Понедельник", "Вторник", "Среда",
             "Четверг", "Пятница", "Суббота", "Воскресенье"]
@@ -29,17 +31,22 @@ def user(request):
     else:
         greetings = "Добрый вечер"
 
-    tasks = Task.objects.order_by('id')
+    # tasks = Task.objects.exclude(deadline__range=[datetime.now() - timedelta(1000), datetime.now() - timedelta(1)]).order_by('deadline')
+    tasks = Task.objects.order_by('deadline')
+    overdue = Task.objects.exclude(deadline=current_date)
     projects = Project.objects.order_by('id')
     teams=Team.objects.order_by('id')
 
     data = {
         'title': greetings,
-        'current_date': current_date,
         'week_day': days[week_day],
         'tasks': tasks,
         'projects': projects,
-        'teams': teams
+        'teams': teams,
+        'current_date': current_date,
+        'tomorrow': tomorrow,
+        'yesterday': yesterday,
+        'overdue': overdue
     }
 
     return render(request, 'main/index.html', data)
