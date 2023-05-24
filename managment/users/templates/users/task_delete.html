@@ -1,0 +1,27 @@
+{% extends 'main/layout.html' %}
+
+{% block title%}
+Удаление статьи
+{% endblock %}
+
+
+{% block info%}
+{% if text %}
+<p class="homePageText">{{text}}</p>
+{% else %}
+<p class="homePageText">Удаление задачи</p>
+{% endif %}
+{% endblock %}
+
+
+{% block body%}
+<div class="task_delete_container">
+    <div class="form_delete">
+        <p style="font-size: xx-large">Вы уверены, что хотите удалить задачу?</p>
+        <form method="post">
+            {% csrf_token %}<br>
+            <button class="btn btn-success btn-lg" type="submit">Удалить</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

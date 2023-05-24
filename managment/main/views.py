@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.shortcuts import render
-from datetime import datetime
+from datetime import datetime, date, timedelta
 
 from django.views.generic import DetailView
 
@@ -20,12 +20,6 @@ def index(request):
     return render(request, 'main/index.html', data)
 
 
-
-
-def about(request):
-    return render(request, 'users/about.html')
-
-
 def profile(request):
     return render(request, 'users/profile.html')
 
@@ -34,4 +28,3 @@ class UserDetailView(DetailView):
     model = User
     template_name = 'users/profile.html'
     context_object_name = 'user_profile'
-

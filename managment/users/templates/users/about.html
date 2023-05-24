@@ -4,18 +4,96 @@
 About
 {% endblock %}
 
+
 {% block info%}
-<div class="tasksInfo">
-    <b class="tasksText">Мои задачи</b>
-    <div class="hh">
-        <a>Список</a>
-        <a>Календарь</a>
-        <a>Фильтр</a>
-    </div>
-</div>
+<p class="homePageText">Мои задачи</p>
 {% endblock %}
 
 
 {% block body%}
-<p>About</p>
+<div class="body_container">
+    <div>
+        <a href="{% url 'about' %}" class="move_to_tasks" >Актуальные задачи</a>
+        <a href="{% url 'completed' %}" class="move_to_tasks" >Завершенные задачи</a>
+        <a href="{% url 'create' %}" class="btn btn-secondary" style="float: right; margin-top: 10px; margin-right: 10px">Добавить задачу</a>
+    </div>
+    <table class="table" id="hh">
+        <div class="table_row">
+            <thead>
+            <tr>
+                <th>Описание задачи</th>
+                <th>Дедлайн</th>
+                <th>Проект</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for el in tasks %}
+            <div class="dd">
+                <tr>
+                    <td>
+                        <div class="table_name">
+                            <input type="checkbox" class="read-more-state" id="{{el.id}}" />
+                            <label for="{{el.id}}" class="read-more-trigger">
+                                <div><span style="color: #808080"><i class="fa-regular fa-circle-check fa-xl"></i></span>
+                                    <a>{{el.name}}</a>
+                                </div>
+                                <span class="pointer"><i class="fa-solid fa-arrow-right fa-lg"></i></span>
+                            </label>
+                            <div class="read-more-wrap">
+                                <div class="qq">
+                                    <a>Исполнитель: </a>
+                                    <a class="read-more-target">{{el.executor}}</a>
+                                </div>
+                                <div class="qq">
+                                    <a>Описание: </a>
+                                    <a class="read-more-target">{{el.description}}</a>
+                                </div>
+
+                                <a href="{% url 'task-delete' el.id %}" class="btn btn-outline-danger" style="float: right; margin-top: 10px; margin-left: 10px">Удалить</a>
+                                <a href="{% url 'task-update' el.id %}" class="btn btn-outline-light" style="float: right; margin-top: 10px; margin-left: 10px">Редактировать</a>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{% if el.deadline.date == current_date %}
+                        <h style="color: #65ab5b" class="task_deadline">Сегодня</h>
+                        {% elif el.deadline.date == tomorrow %}
+                        <h style="color: #65ab5b" class="task_deadline">Завтра</h>
+                        {% elif el.deadline.date == yesterday %}
+                        <h style="color: indianred" class="task_deadline">Вчера</h>
+                        {% elif el.deadline.date < yesterday %}
+                        <h style="color: indianred" class="task_deadline">{{el.deadline.date}}</h>
+                        {% else %}
+                        <h class="task_deadline">{{el.deadline.date}}</h>
+                        {% endif %}</td>
+                    <td>{{ el.project.name }}</td>
+                </tr>
+            </div>
+            {% endfor %}
+            <!--  {% for el in tasks %}
+              {% endfor %} -->
+            </tbody>
+        </div>
+    </table>
+    <!--<div id="hidden-element">ТЕСТ Этот элемент должен скрываться и появляться</div>
+
+    <script>
+        document.getElementById('hh').addEventListener('click', (event)=>{
+            const t = event.target.closest('td');
+            if(t){event.target.style.backgroundColor="purple"}
+        })
+    </script>-->
+
+    <!--<script>
+      document.addEventListener("DOMContentLoaded", hiddenCloseclick());
+      document.getElementById('click-to-hide').addEventListener("click", hiddenCloseclick);
+        function hiddenCloseclick() {
+        let x = document.getElementById('hidden-element');
+          if (x.style.display == "none"){
+          x.style.display = "block";
+          } else {
+         x.style.display = "none"}
+        };
+
+      </script> -->
+</div>
 {% endblock %}

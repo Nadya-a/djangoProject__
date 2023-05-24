@@ -5,8 +5,21 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 
+class Team(models.Model):
+    short_name = models.TextField(max_length=50, blank=True)
+    full_name = models.TextField(max_length=150, blank=True)
+
+    def __str__(self):
+        return self.short_name
+
+    class Meta:
+        verbose_name = 'Команда'
+        verbose_name_plural = 'Команды'
+
+
 class Project(models.Model):
     name = models.TextField(max_length=50, blank=True)
+    team = models.ForeignKey(Team, null=True, on_delete=models.SET_NULL)
 
     def __str__(self):
         return self.name
@@ -15,18 +28,8 @@ class Project(models.Model):
         verbose_name = 'Проект'
         verbose_name_plural = 'Проекты'
 
-
-class Team(models.Model):
-    short_name = models.TextField(max_length=50, blank=True)
-    full_name = models.TextField(max_length=150, blank=True)
-    project = ManyToManyField(Project)
-
-    def __str__(self):
-        return self.short_name
-
-    class Meta:
-        verbose_name = 'Команда'
-        verbose_name_plural = 'Команды'
+    def check_color(self):
+        return self.color
 
 
 class Profile(models.Model):
@@ -57,15 +60,25 @@ def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
 
 
+TASK_STATUSES = (
+    ('completed', 'COMPLETED'),
+    ('incomplete', 'INCOMPLETE')
+)
+
+
 class Task(models.Model):
     name = models.TextField(max_length=150, blank=True)
     description = models.TextField(max_length=500, blank=True)
     deadline = models.DateTimeField('Date: ')
     executor = models.ForeignKey(Profile, null=True, on_delete=models.SET_NULL)
     project = models.ForeignKey(Project, null=True, on_delete=models.SET_NULL)
+    status = models.CharField(max_length=10, choices=TASK_STATUSES, default='incomplete')
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return 'update'
 
     class Meta:
         verbose_name = 'Задача'

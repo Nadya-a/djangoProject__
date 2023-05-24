@@ -15,16 +15,13 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <aside>
-    <!--<i class="fa-solid fa-people-group fa-2x" style="color: indianred;"></i>-->
     <img src="{% static 'main/img/people.png' %}" class="logo_im">
     <span class="logo">Taskify</span>
     <dev class="less" style="visibility: hidden"><i class="fa-solid fa-bars"></i></dev>
     <ul>
         <a href="{% url 'index' %}"><li><i class="fas fa-home fa-lg"></i> Главная</li></a>
         <a href="{% url 'about' %}"><li><i class="fa-solid fa-check fa-lg"></i> Задачи</li></a>
-        <a href=""><li><i class="fa-solid fa-bell fa-lg"></i> Упоминания</li></a>
-        <a href="{% url 'news_home' %}"><li><i class="fa-solid fa-gear fa-lg"></i> Настройки</li></a>
-        <!-- <p href="{% url 'create' %}"><li><button class="btn btn-info"><i class="fas fa-plus-circle"></i>Добавить запись</button></li></p> -->
+        <a href="{% url 'profile' user.id %}"><li><i class="fa-solid fa-user fa-lg"></i> Просмотр профиля</li></a>
     </ul>
     <div class="team">
         <div class="aside_container">
@@ -34,7 +31,7 @@
         </div>
         <ul class="ull">
             {% for el in teams %}
-            <li>{{el.short_name}}</li>
+            <li><a href="{% url 'about' %}" style="text-decoration: none; color: white">{{el.short_name}}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -46,7 +43,7 @@
         </div>
         <ul class="ulli">
             {% for el in projects %}
-            <li>{{el.name}}</li>
+            <li><a href="{% url 'about' %}" style="text-decoration: none; color: white">{{el.name}}</a></li>
             {% endfor %}
         </ul>
     </div>

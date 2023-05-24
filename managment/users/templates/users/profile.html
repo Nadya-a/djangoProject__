@@ -26,11 +26,9 @@
     </ul>
 </header>
 <div class="body">
-    <a href="{% url 'user' %}">Home</a>
+    <a class="btn btn-secondary btn-lg" href="{% url 'user' %}" style="margin: 20px">На главную</a>
     <div class="userProfile">
         <div class="user_image">
-            <!-- {% static 'users/user_images/barbir.jpeg' %}
-            ../../../users/static/users/user_images/barbir.jpeg -->
             <img src= "{% static 'users/user_images/barbir.jpeg' %}" style="width: 360px; height: 460px">
         </div>
         <div class="info_container">

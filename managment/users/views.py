@@ -1,11 +1,10 @@
 from datetime import datetime, date, timedelta
-
 from django.contrib.auth.forms import UserCreationForm
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, FormView
-from .models import User, Profile, Task, Project, Team
-from .forms import UserForm, ProfileForm
+from django.views.generic import CreateView, UpdateView, DetailView, TemplateView, FormView, DeleteView
+from .models import User, Task, Project, Team
+from .forms import TaskForm
 
 
 def home(request):
@@ -13,8 +12,42 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'users/about.html')
+    current_date = date.today()
+    tomorrow = current_date + timedelta(1)
+    yesterday = current_date - timedelta(1)
+    tasks = Task.objects.filter(status='incomplete').order_by('deadline')
+    projects = Project.objects.order_by('id')
+    teams = Team.objects.order_by('id')
 
+    data = {
+        'tasks': tasks,
+        'projects': projects,
+        'teams': teams,
+        'current_date': current_date,
+        'tomorrow': tomorrow,
+        'yesterday': yesterday
+    }
+
+    return render(request, 'users/about.html', data)
+
+def completed(request):
+    current_date = date.today()
+    tomorrow = current_date + timedelta(1)
+    yesterday = current_date - timedelta(1)
+    tasks = Task.objects.filter(status='completed').order_by('deadline')
+    projects = Project.objects.order_by('id')
+    teams = Team.objects.order_by('id')
+
+    data = {
+        'tasks': tasks,
+        'projects': projects,
+        'teams': teams,
+        'current_date': current_date,
+        'tomorrow': tomorrow,
+        'yesterday': yesterday
+    }
+
+    return render(request, 'users/about.html', data)
 
 def user(request):
     hour_now = datetime.now().hour
@@ -31,27 +64,23 @@ def user(request):
     else:
         greetings = "Добрый вечер"
 
-    # tasks = Task.objects.exclude(deadline__range=[datetime.now() - timedelta(1000), datetime.now() - timedelta(1)]).order_by('deadline')
     tasks = Task.objects.order_by('deadline')
-    overdue = Task.objects.exclude(deadline=current_date)
     projects = Project.objects.order_by('id')
-    teams=Team.objects.order_by('id')
+    teams = Team.objects.order_by('id')
 
     data = {
         'title': greetings,
         'week_day': days[week_day],
+        'username': request.user.username,
         'tasks': tasks,
         'projects': projects,
         'teams': teams,
         'current_date': current_date,
         'tomorrow': tomorrow,
-        'yesterday': yesterday,
-        'overdue': overdue
+        'yesterday': yesterday
     }
 
     return render(request, 'main/index.html', data)
-
-
 
 
 def profile(request):
@@ -64,25 +93,41 @@ class UserDetailView(DetailView):
     context_object_name = 'user_profile'
 
 
-class ProfileDetailView(DetailView):
-    model = Profile
-    template_name = template_name = 'users/profile.html'
-    context_object_name = 'user_profile_more'
-
-
-class UpdateUser(UpdateView):
-    model = User
-    template_name = 'users/profile.html'
-    form_class = UserForm
-
-
-class UpdateProfile(UpdateView):
-    model = Profile
-    template_name = 'users/profile.html'
-    form_class = ProfileForm
-
-
 class SignUp(CreateView):
     form_class = UserCreationForm
     success_url = reverse_lazy("login")
     template_name = "registration/signup.html"
+
+
+def create(request):
+    text = 'Создание задачи'
+    error = ''
+    if request.method == 'POST':
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('about')
+        else:
+            error = 'Invalid forma'
+
+    form = TaskForm()
+
+    data = {
+        'form': form,
+        'error': error,
+        'text': text
+    }
+
+    return render(request, 'users/task_update.html', data)
+
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    template_name = 'users/task_update.html'
+    form_class = TaskForm
+
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    success_url = '/about/'
+    template_name = 'users/task_delete.html'

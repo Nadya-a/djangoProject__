@@ -10,7 +10,6 @@
 
 
 {% block body%}
-<!--  <li>aaaa</li><li>bbbb</li> -->
 <div class="features">
     <div class="hello_text">
         <a style="font-weight: 500; font-size: xx-large">{{ title }}, {{user.username}}!</a>
@@ -24,11 +23,6 @@
                     <i class="fa-solid fa-list-check fa-2xl"></i>
                     <h2 style="margin-left: 4px; margin-top: 4px">Мои задачи</h2>
                 </div>
-              <!--  <ul class="hr">
-                    <li>Актуальные</li>
-                    <li>Просроченные</li>
-                    <li>Закрытые</li>
-                </ul> -->
             </div>
             <div class="tasks_container">
                 {% for el in tasks %}
@@ -57,7 +51,7 @@
             <div class="projects_container">
                 {% for el in projects %}
                 <div class="project_element">
-                    <div class="progress_bar_container">
+                    <div class="progress_bar_container" style="background: #01939A">
                         <i class="fa-solid fa-bars-progress fa-2x"></i>
                     </div>
                     <h>{{el.name}}</h>
@@ -84,6 +78,5 @@
     {% endfor %}
 </div>
 
-{% include 'main/test.html' %}
 
 {% endblock %}

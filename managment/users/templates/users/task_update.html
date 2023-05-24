@@ -1,0 +1,39 @@
+{% extends 'main/layout.html' %}
+
+{% block title%}
+{% if text %}
+<p class="homePageText">{{text}}</p>
+{% else %}
+<p class="homePageText">Редактирование задачи</p>
+{% endif %}
+{% endblock %}
+
+
+{% block info%}
+{% if text %}
+<p class="homePageText">{{text}}</p>
+{% else %}
+<p class="homePageText">Редактирование задачи</p>
+{% endif %}
+{% endblock %}
+
+
+{% block body%}
+<div class="task_update_container">
+    <div class="form">
+        <form method="post">
+            {% csrf_token %}<br>
+            <p>Название задачи: {{ form.name }}</p>
+            <p>Статус задачи: {{ form.status }}</p>
+            <p>Исполнитель: {{form.executor}}</p>
+            <p>Дедлайн: {{ form.deadline }}</p>
+            <p>Описание задачи: {{ form.description }}</p>
+            <p>Проект: {{ form.project }}</p><br>
+
+            <div class="button_s">
+                <button class="btn btn-success btn-lg" type="submit">Сохранить</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

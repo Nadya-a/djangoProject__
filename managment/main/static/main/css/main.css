@@ -169,6 +169,19 @@ div.hh a {
     font-size: 22px;
     margin-top: 6px;
 }
+.move_to_tasks{
+    text-decoration: none;
+    color: white;
+    font-size: medium;
+    border: 1px solid #4d4d4d;
+    border-radius: 8px;
+    padding: 10px;
+    display: inline;
+    float: left;
+    margin-top: 10px;
+    margin-left: 20px
+
+}
 .main{
 }
 .main .features{
@@ -262,6 +275,7 @@ form {
 .task_name{
     width: 430px;
     text-align: start;
+
 }
 .task_deadline{
     margin-right: 2px;
@@ -296,8 +310,142 @@ ul.hr li{
     font-size: larger;
 }
 .progress_bar_container{
-    background: #01939A;
     padding: 16px;
     border-radius: 10px;
     margin-right: 10px;
+}
+.body_container{
+    float: left;
+    color: #fff;
+    margin-top: 64px;
+    text-align: center;
+}
+.table {
+	width: 100%;
+	border: none;
+	margin-bottom: 20px;
+    color: white;
+    border-bottom: 1px solid #4d4d4d;
+    white-space: nowrap; /* Запрещаем перенос строк */
+    overflow: hidden; /* Обрезаем все, что не помещается в область */
+    text-overflow: ellipsis; /* Добавляем многоточие */
+}
+.table thead{
+    border-bottom: 1px solid #4d4d4d;
+}
+.table thead th {
+	font-weight: bold;
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	border-left: 1px solid #4d4d4d;
+	border-right: 1px solid #4d4d4d;
+    font-size: medium;
+}
+.table tbody td {
+	text-align: left;
+	border: 1px solid #4d4d4d;
+	padding: 10px 15px;
+	font-size: medium;
+	vertical-align: top;
+    color: white;
+    height: 42px;
+}
+.table tbody td:hover .pointer{
+    display: block;
+}
+.pointer{
+    color: #808080;
+    float: right;
+    display: none;
+    transform: rotate(90deg)
+}
+
+.table thead tr th:first-child, .table tbody tr td:first-child {
+	border-left: none;
+}
+.table thead tr th:last-child, .table tbody tr td:last-child {
+	border-right: none;
+}
+.table_name{
+    width: 102vh;
+}
+
+.single_task_container{
+    width: 40%;
+    background: grey;
+    /*display: none;*/
+}
+
+.read-more-state {
+  display: none;
+}
+
+
+.read-more-wrap{
+    display: none;
+}
+
+.read-more-state:checked ~ .read-more-wrap{
+    display: block;
+}
+
+.read-more-state ~ .read-more-trigger:before {
+  transform: rotate(90deg)
+}
+
+.read-more-state:checked ~ .read-more-trigger:before {
+  transform: rotate(90deg)
+}
+.read-more-trigger{
+    display: flex;
+    justify-content: space-between;
+}
+.read-more-wrap {
+    width: 102vh;
+    white-space: normal;
+}
+.qq{
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    margin-top: 10px;
+}
+.qq a{
+    margin-right: 6px;
+    text-decoration: none;
+    color: white;
+}
+.read-more-target{
+    border: 1px solid #4d4d4d;
+    border-radius: 20px;
+    padding: 4px 10px;
+}
+/* Other style */
+
+.task_update_container{
+    float: left;
+    padding-left: 20%;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 64px;
+}
+.task_delete_container{
+    float: left;
+    padding-left: 20%;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    margin-top: 64px;
+    width: 80%;
+}
+.form_delete{
+    width: 80%;
+    margin-top: 6rem;
+    margin-left: 6rem;
+}
+.button_s{
+    display: flex;
+    justify-content: center;
 }

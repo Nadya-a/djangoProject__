@@ -1,5 +1,7 @@
-from .models import User, Profile
-from django.forms import ModelForm, TextInput, DateTimeInput, Textarea, ImageField
+from datetime import date, timedelta
+
+from .models import User, Profile, Task, Project
+from django.forms import ModelForm, TextInput, Textarea, ImageField, ModelChoiceField, DateInput, ChoiceField
 
 
 class UserForm(ModelForm):
@@ -41,4 +43,34 @@ class ProfileForm(ModelForm):
                 'placeholder': 'bio'
             }),
             'photo': ImageField()
+        }
+
+
+
+TASK_STATUSES = (
+        ('completed', 'COMPLETED'),
+        ('incomplete', 'incomplete')
+    )
+class TaskForm(ModelForm):
+    class Meta:
+        model = Task
+        fields = ['name', 'description', 'deadline', 'executor', 'project', 'status']
+        executor = ModelChoiceField(queryset=Profile.objects.all(), to_field_name="user")
+        executor.widget.attrs.update({'class': 'form-control'})
+        project = ModelChoiceField(queryset=Project.objects.all(), to_field_name="name")
+        project.widget.attrs.update({'class': 'form-control'})
+        status = ChoiceField(choices=TASK_STATUSES)
+        current_date = date.today() + timedelta(1)
+
+        widgets = {
+            'name': TextInput(attrs={
+                'class': 'form-control'
+            }),
+            'description': Textarea(attrs={
+                'class': 'form-control'
+            }),
+            'deadline': DateInput(attrs={
+                'class': 'form-control',
+                'value': current_date
+            })
         }
